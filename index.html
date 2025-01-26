@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Progress Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .widget-container {
+            width: 80%;
+            max-width: 600px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category-label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .progress-bar {
+            position: relative;
+            width: 100%;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 12.5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 50%; /* Default percentage */
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            border-radius: 12.5px 0 0 12.5px;
+            transition: width 0.3s ease;
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .controls button {
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="title">Custom Progress Widget</div>
+
+        <div class="category" id="social-category">
+            <div class="category-label">Social</div>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" id="social-progress"></div>
+            </div>
+            <div class="controls">
+                <button onclick="updateProgress('social', -10)">-</button>
+                <button onclick="updateProgress('social', 10)">+</button>
+            </div>
+        </div>
+
+        <div class="category" id="physical-health-category">
+            <div class="category-label">Physical Health</div>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" id="physical-health-progress"></div>
+            </div>
+            <div class="controls">
+                <button onclick="updateProgress('physical-health', -10)">-</button>
+                <button onclick="updateProgress('physical-health', 10)">+</button>
+            </div>
+        </div>
+
+        <div class="category" id="mental-health-category">
+            <div class="category-label">Mental Health</div>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" id="mental-health-progress"></div>
+            </div>
+            <div class="controls">
+                <button onclick="updateProgress('mental-health', -10)">-</button>
+                <button onclick="updateProgress('mental-health', 10)">+</button>
+            </div>
+        </div>
+
+        <div class="category" id="spiritual-health-category">
+            <div class="category-label">Spiritual Health</div>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" id="spiritual-health-progress"></div>
+            </div>
+            <div class="controls">
+                <button onclick="updateProgress('spiritual-health', -10)">-</button>
+                <button onclick="updateProgress('spiritual-health', 10)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = {
+            'social': 50,
+            'physical-health': 50,
+            'mental-health': 50,
+            'spiritual-health': 50
+        };
+
+        function updateProgress(category, amount) {
+            const progressElement = document.getElementById(`${category}-progress`);
+            categories[category] = Math.max(0, Math.min(100, categories[category] + amount));
+            progressElement.style.width = categories[category] + '%';
+        }
+    </script>
+</body>
+</html>
